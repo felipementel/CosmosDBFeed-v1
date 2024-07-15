@@ -9,11 +9,11 @@ namespace ProductFeedOnCosmos.Function
     {
         [FunctionName("CDCCosmos")]
         public static void Run([CosmosDBTrigger(
-            databaseName: "CanalDEPLOY",
-            collectionName: "products",
-            ConnectionStringSetting = "CosmosConnectionString",
-            LeaseCollectionName = "leases",
-            CreateLeaseCollectionIfNotExists =true)] IReadOnlyList<Document> input,
+                        databaseName: "CanalDEPLOY",
+            containerName: "products",
+            Connection = "CosmosConnectionString",
+            LeaseContainerName = "leases",
+            CreateLeaseContainerIfNotExists = true)]IReadOnlyList<Document> input,
             ILogger log)
         {
             log.LogInformation("start of function");
@@ -26,5 +26,10 @@ namespace ProductFeedOnCosmos.Function
 
             log.LogInformation("end of function");
         }
+    }
+
+    public class Document
+    {
+        public string Id { get; set; }
     }
 }
